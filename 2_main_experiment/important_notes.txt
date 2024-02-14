@@ -1,0 +1,9 @@
+Due to an implementation error in create_desc_annotated_data.py, it has been discovered that incorrect intentions were annotated for a total of four utterances. These four data points will be excluded from dataset statistics and model evaluation, and analysis will be conducted only on the remaining data (549 utterances).
+
+The erroneous utterances are as follows:
+| conv_id | turn_num | speaker | utterance | face act |
+| --- | --- | --- | --- | --- |
+| 97 | 6 | ER | Please explain to me in detail | other |
+| 97 | 59 | ER | Absolutely! | other |
+| 267 | 35 | ER | Absolutely! | hpos+ |
+| 267 | 39 | ER | Absolutely! | hpos+ |

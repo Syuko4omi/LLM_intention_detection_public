@@ -1,0 +1,73 @@
+You are a talented scenario writer.
+Your task is to create a dialogue between two individuals discussing a charity within the following settings:
+
+# Settings
+* The conversation must consist of at least twenty exchanges. Minimize lengthy sentences to simulate a chat format in text. You must include at most three sentences in one turn.
+* Two characters participate in a crowdsourcing task with a $2 reward upon completion. They meet for the first time without revealing their identity and engage in online conversation with assigned roles as "ER" and "EE."
+* At the end of the conversation, they must decide how much they donate within the $0 to $2 range.
+* The roles assigned to the two characters are "persuader (ER)" and "persuadee (EE)."
+* They are discussing Save the Children (STC), a charitable organization. Save the Children (STC) is an NGO established in the UK in 1919 that is dedicated to enhancing children's lives globally.
+* ER is attempting to convince EE to donate to STC.
+
+# Storyline
+Phase 1: ER greets EE and talks about STC, asking if EE is familiar with it or has thoughts about charitable organizations like STC.
+Phase 2: Subsequently, ER appeals to EE for a donation to STC. EE thinks they don't want to donate, so they refuse ER's proposal.
+Phase 3: ER harshly criticizes how EE spends money. One way of criticism is that ER blames EE for wasting money on unnecessary things like coffee, snacks, or junk food every day. When you incorporate this line, you must use the word "waste" so that the line indicates that ER explicitly criticizes EE. The other way is that if EE has said they have already contributed to other local or global charities, there might also be room to redirect those funds toward donations to STC. This remark carries the nuance of accusing EE that donating to different charities should not be a reason not to contribute to STC.
+Phase 4: EE is reluctant to be persuaded easily and rejects ER's requests for several turns. ER persisted in convincing EE, and eventually, they reached an agreement, with EE agreeing to donate 0.5 dollars to STC.
+
+
+You can incorporate some strategies in the conversation.
+Here are some examples:
+
+# ER's strategies
+* logical-appeal
+Logical appeal refers to persuading others by using logical arguments. ER can tell EE what Save the Children is and how their donation is essential to help ensure children's rights to health, education, safety, etc.
+Convince EE that their donation will make a tangible impact on the world.
+e.g., 'Your donation will make their life better.'
+
+* emotion-appeal
+Emotional appeal refers to persuading others by using emotions. It refers to the elicitation of specific emotions to influence others. Specifically, there are four emotional appeals:
+1) telling stories to involve participants
+2) eliciting empathy
+3) eliciting anger
+4) eliciting the feeling of guilt. 'Kids are dying from hunger every minute.'
+
+* rhetorical question, irony
+This term refers to linguistic expressions that imply a speaker's negative attitude towards reality by intentionally saying things contrary to reality.
+e.g., "Saying that you can't donate even a cent means you must be suffering much more than children in impoverished countries." (ER implies the opposite of the truth, knowing EE is not as distressed as children in impoverished countries)
+e.g., "I agree with what you said. Yeah, donating a dollar seems to be way too much, indeed. By the way, how much do you usually spend on a cup of coffee?" (ER critically questioning why EE can afford coffee doesn't allocate resources to help children, implying the ability to donate but choosing not to do so)
+
+
+# EE's strategies
+* disagree-donation
+Use sentences that explicitly refuse donation, usually short sentences.
+e.g., no, I don't want to donate this time.
+
+* Disagree-donation-more
+Decline to donate more after making a donation.
+e.g., 'I cannot donate more.'
+
+* Provide-donation-amount
+Indicate the donation amount.
+e.g., 'I'd like to donate 0.5.'
+
+* Confirm-donation
+Confirm the donation amount.
+e.g., 
+ER: 'Do you confirm your donation to be 0.1?'
+EE: 'Yes, I confirm I want to donate $0.1.'
+
+* negative-reaction–to-donation
+Negative reaction to donation refers to sentences that show the EE's opinions on the ER's last sentence (mostly passively, not proposing any new topic/idea, but more like responding to the persuader's opinion) that show a general negative attitude towards a possible donation.
+1) Can be 'reasons for refusing donation' (in this case, usually happens after disagree-donation)
+2) Can be a general opinion that usually happens after emotion_appeal/ logical_appeal/ propose_donation and other persuasive strategies.
+This is a generic/broad class. These opinions are more against a possible donation.  
+Unlike general disagreement, these sentences are usually long and contain some opinions (thoughts) but do not propose a new thought, which is more passive.
+e.g.,
+EE: I am already making a difference in many children's lives. (The context is he declines to donate; this is providing the reason for refusing)
+EE: 'I've been donating for years.' (context is disagree-donation-yet, this is providing the reason for refusing)
+ER: Save the Children's goal is to promote children's rights, provide relief, and help support children in developing countries.
+EE: I just don't believe in these organizations. (can also be disagree-donation-reason)
+
+
+Please start writing the conversation from here.

@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "easy-qa-dataset"
+version = "0.1.0"
+description = ""
+authors = ["Syuko4omi <riorioblackcat@yahoo.co.jp>"]
+readme = "README.md"
+packages = [{include = "easy_qa_dataset"}]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.13"
+pandas = "^2.1.3"
+openpyxl = "^3.1.2"
+openai = "^1.3.5"
+krippendorff = "^0.6.1"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.11.0"
+flake8 = "^6.1.0"
+isort = "^5.12.0"
+mypy = "^1.7.1"
+pytest = "^7.4.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,316 @@
+<!-- You must include this JavaScript file -->
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+
+<!-- For the full list of available Crowd HTML Elements and their input/output documentation,
+      please refer to https://docs.aws.amazon.com/sagemaker/latest/dg/sms-ui-template-reference.html -->
+
+<!-- You must include crowd-form so that your task submits answers to MTurk -->
+<crowd-form answer-format="flatten-objects">
+
+    <!-- The crowd-classifier element will create a tool for the Worker to select the
+           correct answer to your question -->
+    <p hidden id="whole_conv" title="${conversation}">aaa</p>
+    <p hidden id="obj_utterance" title="${utterance}">bbb</p>
+    <!--categories="['A', 'B', 'C']"-->
+    <!--categories="${categories}"-->
+    <crowd-classifier categories="${categories}" header="${question}" name="intent">
+
+        <!-- Your conversations will be substituted for the "conversation" variable when 
+               you publish a batch with an input file containing multiple HTML-formatted conversations. -->
+        <classification-target>
+
+            <div id="conversation_area" style="width:100%; height:340px; overflow:auto; border:1px solid #aaaaaa">
+                <script>
+                    let convs = document.getElementById('whole_conv').title.split("<%%>");
+                    for (let i = 0; i < convs.length; i++) {
+                        let [speaker, ..._uttr] = convs[i].split(":");
+                        let uttr = _uttr.join(":");  // in case there is ":" in utterance
+
+                        if (uttr == document.getElementById('obj_utterance').title) {
+                            document.write(speaker.bold().fontcolor("red") + ": ");
+                            document.write(uttr.fontcolor("red") + "<br>");
+                        } else {
+                            document.write(speaker.bold() + ": ");
+                            document.write(uttr + "<br>");
+                        }
+                    }
+                </script>
+            </div>
+        </classification-target>
+
+        <!-- Use the short-instructions section for quick instructions that the Worker
+              will see while working on the task. Including some basic examples of 
+              good and bad answers here can help get good results. You can include 
+              any HTML here.
+
+             Your conversation topics will be substituted for the "topic" variable when 
+             you publish a batch with an input file containing multiple conversation topics. -->
+        <short-instructions>
+            <h3>
+                <font color="red">Important Notes</font>
+            </h3>
+            This task consists of multiple HITs involving intent detection for different utterances within the same
+            conversation.<br>
+            <strong>
+                <font color="red">Please perform as many intent detection tasks as possible.</font>
+            </strong><br>
+            You will be paid <strong>$0.4</strong> for each accepted submission.<br>
+            <strong>
+                <font color="red">If the quality of your annotations falls below the expected standard, or if you do not
+                    follow the provided
+                    instructions, your submission will be rejected.<br></font>
+                Please answer each question carefully.
+            </strong>
+
+            <h3>What kind of the task is this?</h3>
+            This task is text classification.<br>
+            You are presented some utterances in conversations and candidate descriptions for each utterance.<br>
+            Then, you have to assign the most appropriate description of the utterance.<br>
+
+            <h3>What is the situation of conversation on this task?</h3>
+            This task involves a conversation between two individuals discussing a charity.<br>
+            They are referred to as "ER" and "EE."<br>
+            ER represents the "persuader," and EE represents the "persuadee."<br>
+            They are discussing the charity organization called Save the Children (STC).<br>
+            ER is negotiating with EE to persuade them to make a donation to STC.<br>
+
+            <h3>What will you do on this task?</h3>
+            Your task is to annotate the intentions of the speakers conveyed in their utterances.<br>
+            The intentions are represented as natural language.<br>
+            For example, suppose ER asks EE, “Please donate $1.”.<br>
+            In that case, you annotate the intention of the description as “ER asks EE for donation.”<br>
+            The intentions of the utterances can be explicitly stated or implied.<br>
+            Please read the conversation carefully and infer the intentions behind the utterances.<br>
+            Please note that EE may not necessarily be enthusiastic about making a donation.<br>
+
+        </short-instructions>
+
+        <!-- Use the full-instructions section for more detailed instructions that the 
+              Worker can open while working on the task. Including more detailed 
+              instructions and additional examples of good and bad answers here can
+              help get good results. You can include any HTML here. -->
+        <full-instructions header="Intent detection Instructions">
+            <h2>Goal of this research</h2>
+            We are going to determine the extent to which Large Language Models (LLMs) like ChatGPT possess the ability
+            to understand the intentions in human conversation.<br>
+            To do this, we create dialogue datasets with annotated intentions for utterances.<br>
+            Please read some conversation text and identify the speaker's intention.<br>
+
+            <h2>Task</h2>
+            This is a text classification task.<br>
+            In a conversation, one speaker (ER) is persuading another speaker (EE) to donate to a charity organization
+            called Save the Children (STC).<br>
+            Although the ER attempts to ask for a donation, EE may not necessarily be enthusiastic about making one.<br>
+            This may result in implicitly rejective utterances from EE. And if EE is interested in making a donation, EE
+            may make it clear in the conversation.<br>
+            In this task, you will be given a full conversation between ER and EE, with an utterance in the conversation
+            (marked in red), and you will need to select the option that best matches the real intention of the speaker
+            behind this utterance.<br>
+            For example, if the utterance is "Please donate $1" said by the ER, you should select "ER asks EE for
+            donation" because it matches the intention of ER.<br>
+
+            <h2>Steps</h2>
+            <h3>Step 1: Read the full conversation and make sure that you understand the intentions of both speakers.
+            </h3>
+            You are given a conversation like the one below.<br>
+            The conversation has two entries: speaker and utterance.<br>
+            <table border="1">
+                <tr>
+                    <th>Speaker</th>
+                    <th>Utterance</th>
+                </tr>
+                <tr>
+                    <td>ER</td>
+                    <td>Hello.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <font color="red">ER</font>
+                    </td>
+                    <td>
+                        <font color="red">Please Donate $1.</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td>EE</td>
+                    <td>Sorry I can't.</td>
+                </tr>
+            </table>
+
+            <h3>Step 2: Identify the utterance that is marked in red.</h3>
+            The specific utterance is marked in red so you can focus on interpreting its intention.
+
+            <h3>Step 3: Select the option that best matches the intention of the speaker by speaking that utterance.
+            </h3>
+            When annotating the intention of an utterance, you are presented with several descriptions as options.<br>
+            From these options, you select the one that best represents the speaker's intention and annotate it to the
+            utterance.<br>
+            For example, if ER says, “Please donate $1”, four options are provided as shown in the table below.<br>
+            Among these options, “ER asks EE for donation” best represents the intention of the utterance. Then, please
+            annotate that description to the utterance.<br>
+            Note that the candidate descriptions will be different when you annotate another utterance. Please select
+            one appropriate description among the presented descriptions.<br>
+            <table border="1">
+                <tr>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>ER asks EE for their time or permission to discuss charities.</td>
+                </tr>
+                <tr>
+                    <td>ER asks EE for donation.</td>
+                </tr>
+                <tr>
+                    <td>ER asks EE to donate more.</td>
+                </tr>
+                <tr>
+                    <td>ER asks or confirms the amount that EE is donating to STC.</td>
+                </tr>
+            </table>
+
+            <h2>Sample answers</h2>
+            There are some utterances that are hard to annotate descriptions.<br>
+            Even if the appropriate description does not seem to be among the options, it is necessary to choose the
+            most appropriate or possible description based on the conversation history.<br>
+            <br>
+            One of the types of utterances that are hard to annotate is “the utterance itself is too short to determine
+            the intention.”<br>
+            The intentions implied from those short utterances are often the same as the preceding and following
+            utterances.<br>
+            If the intention can be inferred from the preceding and following utterances, and the description of the
+            intention is also presented for the short utterance, please annotate the same description.<br>
+
+            <h3>Example 1</h3>
+            Q. What is the intention of the ER's utterance: 'Please.' ?
+            <h4>Conversation</h4>
+            <table border="1">
+                <tr>
+                    <th>Speaker</th>
+                    <th>Utterance</th>
+                </tr>
+                <tr>
+                    <td>ER</td>
+                    <td>Hello.</td>
+                </tr>
+                <tr>
+                    <td>ER</td>
+                    <td>Donate $1.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <font color="red">ER</font>
+                    </td>
+                    <td>
+                        <font color="red">Please.</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td>EE</td>
+                    <td>Sorry I can't.</td>
+                </tr>
+            </table>
+            <h4>Options</h4>
+            <table border="1">
+                <tr>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>ER asks EE for their time or permission to discuss charities.</td>
+                </tr>
+                <tr>
+                    <td>ER asks EE for donation.</td>
+                </tr>
+                <tr>
+                    <td>ER asks EE to donate more.</td>
+                </tr>
+                <tr>
+                    <td>ER asks or confirms the amount that EE is donating to STC.</td>
+                </tr>
+            </table>
+            <h4>How to answer</h4>
+            Suppose EE says, "Donate $1." and immediately follows it with the word "Please."<br>
+            Determining the description of this "Please." based solely on the utterance itself is challenging.<br>
+            However, considering the preceding utterance, "Donate $1," it can be interpreted as "ER is requesting EE to
+            make a donation."<br>
+            Therefore, select "ER asks EE for donation." and annotate the utterance "Please." with it.<br>
+
+
+            <h3>Example 2</h3>
+            Q. What is the intention of the ER's utterance: 'In the first two months of 2018, around 1,000 children were
+            killed or injured due to violence there.' ?
+            <h4>Conversation</h4>
+            <table border="1">
+                <tr>
+                    <th>Speaker</th>
+                    <th>Utterance</th>
+                </tr>
+                <tr>
+                    <td>ER</td>
+                    <td>Just so you’re aware, a large part of their work is in war zones such as Syria.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <font color="red">ER</font>
+                    </td>
+                    <td>
+                        <font color="red">In the first two months of 2018, around 1,000 children were killed or injured
+                            due to violence there.</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ER</td>
+                    <td>Save the Children works to provide relief in countries like that.</td>
+                </tr>
+            </table>
+            <h4>Options</h4>
+            <table border="1">
+                <tr>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>ER praises or promotes the good deeds of STC.</td>
+                </tr>
+                <tr>
+                    <td>ER states that STC is a reputable and trustworthy organization.</td>
+                </tr>
+                <tr>
+                    <td>ER states that STC provides information on donations or other related matters, implying that STC
+                        engages in beneficial activities for society.</td>
+                </tr>
+                <tr>
+                    <td>ER shows their involvement for STC, such that they are going to donate to STC or have done so in
+                        the past.</td>
+                </tr>
+                <tr>
+                    <td>ER expresses their preference for charities or the targets they want to help.</td>
+                </tr>
+                <tr>
+                    <td>ER claims that they want to do something good, such as helping children.</td>
+                </tr>
+                <tr>
+                    <td>ER claims that they have donated to charities other than STC or participated in their
+                        activities.</td>
+                </tr>
+                <tr>
+                    <td>ER insists that they are proud of themselves.</td>
+                </tr>
+            </table>
+            <h4>How to answer</h4>
+            In this example, the intention behind the utterance “In the first two months of 2018,…” is not clear.<br>
+            However, by examining the subsequent utterance, "Save the Children works to provide relief in countries like
+            that.", it can be inferred that ER is attempting to explain real-life examples to appeal to STC's good
+            deeds.<br>
+            The utterance "Save the Children works…” can be annotated with the description "ER praises or promotes the
+            good deeds of STC."<br>
+            Therefore, the same description should also be annotated for the utterances “In the first two months of
+            2018,….”<br>
+            Moreover, if you think the same way for the utterance "Just so you’re aware…", the utterance also can be
+            annotated with the description "ER praises or promotes the good deeds of STC."<br>
+
+            <h2>Important</h2>
+            Your response will be used only for our research purposes.
+
+        </full-instructions>
+
+    </crowd-classifier>
+</crowd-form>
