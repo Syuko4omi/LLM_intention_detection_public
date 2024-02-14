@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "simple-exp4"
+version = "0.1.0"
+description = ""
+authors = ["Syuko4omi <riorioblackcat@yahoo.co.jp>"]
+readme = "README.md"
+packages = [{include = "simple_exp4"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pandas = "^2.0.2"
+openpyxl = "^3.1.2"
+openai = "^0.27.8"
+scikit-learn = "^1.2.2"
+tiktoken = "^0.4.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

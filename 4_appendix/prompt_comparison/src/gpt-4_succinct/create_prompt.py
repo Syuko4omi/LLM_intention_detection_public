@@ -1,0 +1,125 @@
+import json
+import random
+
+
+def load_data(path: str):
+    out = []
+    with open(path, "r") as f_r:
+        for line in f_r:
+            instance: dict = json.loads(line)
+            out.append(instance)
+    return out
+
+
+def create_prompt(
+    one_conversation: list[str],
+    current_turn_num: int,
+    history_len: int,
+    id_to_speaker={0: "ER", 1: "EE"},
+):
+    speaker_list = []
+    utterance_list = []
+    for i in range(history_len - 1, -1, -1):
+        if current_turn_num - i < 0:
+            continue
+        else:
+            speaker_list.append(
+                id_to_speaker[one_conversation[current_turn_num - i]["speaker"]]
+            )
+            utterance_list.append(one_conversation[current_turn_num - i]["utterance"])
+
+    script = ""
+    for i in range(len(speaker_list)):
+        script += "{}: {}\n".format(
+            speaker_list[i],
+            utterance_list[i],
+        )
+    options = [
+        one_conversation[current_turn_num]["option_a"],
+        one_conversation[current_turn_num]["option_b"],
+        one_conversation[current_turn_num]["option_c"],
+        one_conversation[current_turn_num]["option_d"],
+    ]
+    answer_idx = one_conversation[current_turn_num]["answer_idx"]
+
+    question = (
+        "Q: What is the speaker's current intention, based on their last utterance? "
+    )
+
+    prompt = (
+        script
+        + "\n"
+        + question
+        + f"Answer Choices: "
+        + f"(A) {options[0]} "
+        + f"(B) {options[1]} "
+        + f"(C) {options[2]} "
+        + f"(D) {options[3]}\n"
+        + "A:"
+    )
+    return prompt, options, answer_idx
+
+
+def save_prompt(
+    conversation_num: int, history_len: int, uttr_num: int, uttr, dst_path: str
+):
+    id_list = []
+    current_pos = 0
+    current_conv_id = None
+
+    # create prompt
+    with open(dst_path, "w") as f_w:
+        for i in range(conversation_num):  # create prompt for the specific conversation
+            for j in range(current_pos, uttr_num):
+                if uttr[current_pos]["conversation_id"] not in id_list:
+                    current_conv_id = uttr[current_pos]["conversation_id"]
+                    id_list.append(current_conv_id)
+                    break
+                current_pos += 1
+            specific_utterances = []  # list of utterances in the specific conversation
+            while uttr[current_pos]["conversation_id"] == current_conv_id:
+                specific_utterances.append(uttr[current_pos])
+                current_pos += 1
+                if current_pos == uttr_num:
+                    break
+            for j in range(len(specific_utterances)):
+                prompt, temp, _ = create_prompt(
+                    specific_utterances,
+                    j,
+                    history_len,
+                )
+                prompt_dict = {
+                    "conversation_id": current_conv_id,
+                    "turn_num": j,
+                    "speaker": specific_utterances[j]["speaker"],
+                    "utterance": specific_utterances[j]["utterance"],
+                    "true_face": specific_utterances[j]["true_face"],
+                    "description": specific_utterances[j]["description"],
+                    "appropriate": specific_utterances[j]["appropriate"],
+                    "alternative_description": specific_utterances[j][
+                        "alternative_description"
+                    ],
+                    "memo": specific_utterances[j]["memo"],
+                    "option_a": temp[0],
+                    "option_b": temp[1],
+                    "option_c": temp[2],
+                    "option_d": temp[3],
+                    "answer_idx": specific_utterances[j]["answer_idx"],
+                    "answer_char": specific_utterances[j]["answer_char"],
+                    "prompt": prompt,
+                }
+                json.dump(prompt_dict, f_w, ensure_ascii=False)
+                f_w.write("\n")
+
+
+if __name__ == "__main__":
+    random.seed(20221018)
+    TEST_UTTERANCE_NUM = 872
+    TEST_CONVERSATION_NUM = 29
+    HISTORY_LEN = 10000
+    SRC_PATH = "../../data/concatenated_data_with_four_options.jsonl"
+    DST_PATH = "../../data/prompt_for_gpt-4_succinct.jsonl"
+    UTTERANCES = load_data(SRC_PATH)
+    save_prompt(
+        TEST_CONVERSATION_NUM, HISTORY_LEN, TEST_UTTERANCE_NUM, UTTERANCES, DST_PATH
+    )

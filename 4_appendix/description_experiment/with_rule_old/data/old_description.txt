@@ -1,0 +1,36 @@
+spos+
+ER praises/promotes the good deeds of STC
+ER shows her/ his involvement for STC
+EE states her preference for other charities
+EE states that she does good deeds
+
+hpos+
+ER appreciates/praises EEs generosity or time
+Incentives EE to do a good deed.
+Empathize/ agree with EE
+EE shows willingness to donate to discuss the charity
+EE acknowledges the efforts of STC.
+Empathizes/ agrees with ER
+
+spos-
+EE apologizes for not donating
+
+hpos-
+ER criticizes EE
+EE doubts/ questions STC or EE
+EE is not aware of STC
+
+sneg+
+Rejects donation out-right
+Cites reason for not donating at all or not donating more.
+
+hneg+
+ER provides EE convenient ways to donate.
+ER apologizes for inconvenience/ intrusion.
+ER decreases the amount of donation.
+
+hneg-
+ER asks EEs time/ permission for discussion.
+ER asks EE for donation.
+ER asks EE to donate more.
+EE asks ER questions about STC.

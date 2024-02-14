@@ -1,0 +1,55 @@
+spos+
+ER praises or promotes the good deeds of STC.
+ER states that STC is a reputable and trustworthy organization.
+ER states that STC provides information on donations or other related matters, implying that STC engages in beneficial activities for society.
+ER shows their involvement for STC, such that they are going to donate to STC or have done so in the past.
+ER expresses their preference for charities or the targets they want to help.
+ER claims that they want to do something good, such as helping children.
+ER claims that they have donated to charities other than STC or participated in their activities.
+ER insists that they are proud of themselves.
+EE expresses their preference for charities or the targets they want to help.
+EE claims that they want to do something good, such as helping children.
+EE claims that they have donated to charities other than STC or participated in their activities.
+EE presents their knowledge about charities to ER.
+EE insists that they are proud of themselves.
+
+hpos+
+ER appreciates or praises EE's generosity.
+ER motivates EE to donate to STC, such as by explaining the essential role their donation plays in helping children or highlighting the suffering children endure due to war, poverty, and other hardships.
+ER encourages EE to do good deeds, other than donating to STC.
+ER empathizes or agrees with EE.
+ER compliments EE for their virtues, efforts, likes or desires.
+ER is interested in the organization mentioned by EE and plans to research it later.
+EE shows willingness to donate or to discuss the charity.
+EE acknowledges the efforts of STC.
+EE states that they know about STC by name, but they are not so familiar with the organization.
+EE empathizes or agrees with ER.
+EE appreciates or praises ER's generosity.
+EE is planning to browse the website recommended by ER.
+
+spos-
+EE apologizes for not making a donation or for making only a small one.
+
+hpos-
+ER criticizes EE.
+EE doubts or criticizes STC or ER.
+EE either knows nothing about STC or is not interested in STC.
+
+sneg+
+EE is either hesitant or unwilling to donate to STC.
+EE refuses to donate to STC or increase the donation amount without even giving a reason.
+EE cites reason for not donating at all or not donating more.
+
+hneg+
+ER makes donating easy and simple, reducing any inconvenience for EE.
+ER apologizes for inconvenience or intrusion.
+ER tries to minimize the financial burden on EE.
+
+hneg-
+ER asks EE for their time or permission to discuss charities.
+ER asks EE for donation.
+ER asks EE to donate more.
+ER asks or confirms the amount that EE is donating to STC.
+EE asks ER questions about STC.
+EE asks ER how ER themselves are involved in STC.
+EE asks ER for donation.
